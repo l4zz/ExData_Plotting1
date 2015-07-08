@@ -1,12 +1,10 @@
 ## Variables are separated by semi-colon, NA are ?
 message("loading data..")
-data <- read.table('household_power_consumption.txt', header=T, na.strings='?', sep=';')
-oneFeb <- data[data$Date == '1/2/2007',]
-twoFeb <- data[data$Date == '2/2/2007',]
-# getting one dataset
-data <- rbind(oneFeb,twoFeb)
+dt <- read.table('household_power_consumption.txt', header=T, na.strings='?', sep=';')
+# limit data to two days in Feb
+data <- dt[(dt$Date == '1/2/2007' | dt$Date == '2/2/2007'),]
 # free some memory
-rm(oneFeb, twoFeb)
+rm(dt)
 message("generating plot1.png")
 png("plot1.png", width=480, height=480, units="px", bg="white")
 # plot histogram
